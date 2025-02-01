@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 //product routing
-app.use('/api/products',ProductRouter)
+app.use('/api/products', ProductRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Server is live');

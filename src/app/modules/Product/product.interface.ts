@@ -6,6 +6,6 @@ export type TProduct = {
   description: string;
   quantity: number;
   inStock: boolean;
-  createdAt?:Date;
-  updatedAt?:Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
