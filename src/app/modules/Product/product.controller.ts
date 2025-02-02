@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { ProductServices } from './product.service';
 
+
+//controller for create product
 const createProduct = async (req: Request, res: Response) => {
   try {
     const book = req.body;
@@ -28,6 +30,7 @@ const getAllProduct = async (req: Request, res: Response) => {
       searchTerm as string,
     );
 
+    //if we search using query the searchTerm doesn't match no data will be returned hence 404
     if (result.length === 0) {
       res.status(404).json({
         success: false,
@@ -52,11 +55,13 @@ const getAllProduct = async (req: Request, res: Response) => {
   }
 };
 
+
 const getProductById = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const result = await ProductServices.getProductByIdFromDB(id);
 
+    //incase there is no product with the given id then the result will be null so 404
     if (result === null) {
       res.status(404).json({
         message: 'Product does not exist',
@@ -98,7 +103,7 @@ const updateProductById = async (req: Request, res: Response) => {
       success: false,
       error: err,
       stack: err.stack,
-      
+
     });
   }
 };
@@ -107,6 +112,8 @@ const deleteProductById = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const result = await ProductServices.deleteProductByIdInDB(id);
+
+    //if book is deleted only then deletedCount becomes 1 only then 200 else sometimes if we try to delete twice it will be 404
     if (result.deletedCount != 0) {
       res.status(200).json({
         status: true,
