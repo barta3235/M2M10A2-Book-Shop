@@ -56,11 +56,20 @@ const getProductById = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const result = await ProductServices.getProductByIdFromDB(id);
-    res.status(200).json({
-      message: 'Book retrieved successfully',
-      status: true,
-      data: result,
-    });
+
+    if (result === null) {
+      res.status(404).json({
+        message: 'Product does not exist',
+        status: false,
+      });
+    } else {
+      res.status(200).json({
+        message: 'Book retrieved successfully',
+        status: true,
+        data: result,
+      });
+    }
+
   } catch (error) {
     const err = error as Error;
     res.status(500).json({
@@ -76,10 +85,7 @@ const updateProductById = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const updateElements = req.body;
-    const result = await ProductServices.updateProductByIdInDB(
-      id,
-      updateElements,
-    );
+    const result = await ProductServices.updateProductByIdInDB(id,updateElements);
     res.status(200).json({
       message: 'Book updated successfully',
       status: true,
@@ -92,39 +98,40 @@ const updateProductById = async (req: Request, res: Response) => {
       success: false,
       error: err,
       stack: err.stack,
+      
     });
   }
 };
 
-const deleteProductById=async(req:Request,res:Response)=>{
-    try{
-        const id=req.params.productId;
-    const result= await ProductServices.deleteProductByIdInDB(id);
-    if(result.deletedCount!=0){
-        res.status(200).json({
-            status:true,
-            message:'Book deleted successfully',
-            data:{}
-        })
-    }else{
-        res.status(404).json({
-            status:false,
-            message:'Book deletion unsuccessfully',
-        })
+const deleteProductById = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.productId;
+    const result = await ProductServices.deleteProductByIdInDB(id);
+    if (result.deletedCount != 0) {
+      res.status(200).json({
+        status: true,
+        message: 'Book deleted successfully',
+        data: {},
+      });
+    } else {
+      res.status(404).json({
+        status: false,
+        message: 'Book deletion unsuccessfully',
+      });
     }
-    }catch(error){
-        const err=error as Error;
-         res.status(500).json({
-        success:false,
-        message:err.message || 'Book deletion unsuccessfully',
-    })
-    }
-}
+  } catch (error) {
+    const err = error as Error;
+    res.status(500).json({
+      success: false,
+      message: err.message || 'Book deletion unsuccessfully',
+    });
+  }
+};
 
 export const ProductController = {
   createProduct,
   getAllProduct,
   getProductById,
   updateProductById,
-  deleteProductById
+  deleteProductById,
 };

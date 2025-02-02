@@ -1,7 +1,7 @@
 import { model, Schema } from 'mongoose';
-import { TProduct } from './product.interface';
+import { TProduct, TProductMethod, TProductModel } from './product.interface';
 
-const productSchema = new Schema<TProduct>(
+const productSchema = new Schema<TProduct,TProductModel,TProductMethod>(
   {
     title: { type: String, required: [true, 'Book title is required'] },
     author: { type: String, required: [true, 'Book author is required'] },
@@ -35,7 +35,12 @@ const productSchema = new Schema<TProduct>(
     },
     inStock: { type: Boolean, required: true },
   },
-  { timestamps: true, versionKey: false,strict:true },
+  { timestamps: true, versionKey: false, strict: true },
 );
 
-export const ProductModel = model<TProduct>('ProductModel', productSchema);
+productSchema.methods.validateSchemaFields= function(elements:string[]){
+  const schemaFields=Object.keys(productSchema.paths)
+  return elements.every(eachElement=>schemaFields.includes(eachElement))
+}
+
+export const ProductModel = model<TProduct,TProductModel>('ProductModel', productSchema);

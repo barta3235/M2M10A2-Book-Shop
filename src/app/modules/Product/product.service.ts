@@ -23,20 +23,28 @@ const getAllProductFromDB = async (searchTerm?: string) => {
 };
 
 const getProductByIdFromDB = async (productId: string) => {
-  const result = await ProductModel.findById({ _id: productId });
+  const result = await ProductModel.findById({ _id: productId }).select('-__v');
   return result;
 };
 
 const updateProductByIdInDB = async (productId: string,elements: Record<string, unknown>) => {
-  const result= await ProductModel.updateOne({_id:productId},elements,{new:true})
-  return result
+  const modelOfProduct= new ProductModel()
+
+  //calling instance method to validate if the updated element fields match schema fields 
+  const match=modelOfProduct.validateSchemaFields(Object.keys(elements))
+  if(match===false){
+    throw new Error('Invalid fields provided for update')
+  }else{
+    const result = await ProductModel.findByIdAndUpdate({ _id: productId }, elements,{new:true});
+    return result;
+  }
+  
 };
 
-
-const deleteProductByIdInDB= async(productId:string)=>{
-    const result= await ProductModel.deleteOne({_id:productId})
-    return result
-}
+const deleteProductByIdInDB = async (productId: string) => {
+  const result = await ProductModel.deleteOne({ _id: productId });
+  return result;
+};
 
 export const ProductServices = {
   createProductIntoDB,

@@ -1,3 +1,5 @@
+import { Model } from "mongoose";
+
 export type TProduct = {
   title: string;
   author: string;
@@ -9,3 +11,10 @@ export type TProduct = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type TProductMethod={
+  validateSchemaFields(elements:string[]):boolean | undefined 
+}
+
+export type TProductModel=Model<TProduct,Record<string,never>,TProductMethod>
+
