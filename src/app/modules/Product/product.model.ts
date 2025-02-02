@@ -35,7 +35,7 @@ const productSchema = new Schema<TProduct>(
     },
     inStock: { type: Boolean, required: true },
   },
-  { timestamps: true, versionKey: false },
+  { timestamps: true, versionKey: false,strict:true },
 );
 
 export const ProductModel = model<TProduct>('ProductModel', productSchema);
