@@ -13,7 +13,7 @@ const orderSchema=new Schema<TOrder>({
     },
     product:{type:Schema.Types.ObjectId,required:true},
     quantity:{type:Number,required:true,min:[0,'Quantity cannot be negative']},
-    totalPrice:{type:Number,min:[0,'Total Price cannot be negative']},
-})
+    totalPrice:{type:Number,min:[0,'Total Price cannot be negative'],required:true},
+},{timestamps:true,versionKey:false})
 
 export const OrderModel=model<TOrder>('OrderModel',orderSchema)
