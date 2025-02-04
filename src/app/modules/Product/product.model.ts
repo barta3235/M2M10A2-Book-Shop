@@ -31,7 +31,7 @@ const productSchema = new Schema<TProduct,TProductModel,TProductMethod>(
     quantity: {
       type: Number,
       required: [true, 'Book quantity is required'],
-      min: [0, 'Product quantity must be zero or a positive value'],
+      min: [1, 'Minimum quantity must be 1'],
     },
     inStock: { type: Boolean, required: true },
   },
