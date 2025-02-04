@@ -31,7 +31,7 @@ const getAllProduct = async (req: Request, res: Response) => {
     );
 
     //if we search using query the searchTerm doesn't match no data will be returned hence 404
-    if (result.length === 0) {
+    if (result.length <= 0) {
       res.status(404).json({
         success: false,
         message: 'No books found matching the search criteria',
