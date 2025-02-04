@@ -33,7 +33,18 @@ const createOrderIntoDB=async(orderDetails:TOrder)=>{
     return result
 }
 
+const getAllOrdersFromDB= async()=>{
+    const result = await OrderModel.find()
+    return result
+}
+
+const revenueCollectionFromDB= async()=>{
+    
+}
+
 
 export const OrderServices={
-    createOrderIntoDB
+    createOrderIntoDB,
+    revenueCollectionFromDB,
+    getAllOrdersFromDB
 }
