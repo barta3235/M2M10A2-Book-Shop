@@ -29,7 +29,7 @@ const getAllOrders= async(req:Request,res:Response)=>{
        const result= await OrderServices.getAllOrdersFromDB()
        res.status(200).json({
            message:'Orders are retrieved successfully',
-           status:200,
+           status:true,
            data:result 
       })
   }catch(error){
@@ -43,8 +43,34 @@ const getAllOrders= async(req:Request,res:Response)=>{
 }
 
 const collectRevenue= async(req:Request,res:Response)=>{
-  const result= await OrderServices.revenueCollectionFromDB()
-  console.log(result)
+  try{
+      const result= await OrderServices.revenueCollectionFromDB()
+
+
+      //if result is empty
+      if(result.length<=0){
+        res.status(404).json({
+          message:'Order cart is empty',
+          status:false
+       }) 
+      }else{
+        res.status(200).json({
+          message:'Revenue calculated successfully',
+          status:true,
+          data:result 
+       })
+      }
+
+      
+  }catch(error){
+      const err= error as Error
+      res.status(500).json({
+         message: err.message || 'Revenue calculation unsuccessfully',
+         status:false,
+         error:err,
+         stack:err.stack
+      })
+  }
 }
 
 

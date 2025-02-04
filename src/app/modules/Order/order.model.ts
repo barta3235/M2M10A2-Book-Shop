@@ -12,7 +12,7 @@ const orderSchema=new Schema<TOrder>({
         }
     },
     product:{type:Schema.Types.ObjectId,required:true},
-    quantity:{type:Number,required:true,min:[0,'Quantity cannot be negative']},
+    quantity:{type:Number,required:true,min:[1,'Minimum order quantity must be 1']},
     totalPrice:{type:Number,min:[0,'Total Price cannot be negative'],required:true},
 },{timestamps:true,versionKey:false})
 
