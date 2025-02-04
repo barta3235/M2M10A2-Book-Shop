@@ -29,6 +29,13 @@ const createOrderIntoDB=async(orderDetails:TOrder)=>{
 
     //reducing quantity ordered from original product quantity
     await ProductModel.findByIdAndUpdate({_id:orderDetails?.product},{$inc:{quantity:-orderDetails.quantity}})
+
+    
+    //make inStock update if product quantity goes 0
+    const productUpdatedInfo= await ProductModel.findById({_id:orderDetails?.product})
+    if(productUpdatedInfo!=null && productUpdatedInfo.quantity<=0){
+        await ProductModel.findByIdAndUpdate({_id:orderDetails?.product},{$set:{inStock:false}})
+    }
  
     return result
 }

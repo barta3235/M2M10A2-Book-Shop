@@ -40,7 +40,7 @@ const updateProductByIdInDB = async (productId: string,elements: Record<string, 
   if(match===false){
     throw new Error('Invalid fields provided for update')
   }else{
-    const result = await ProductModel.updateOne({ _id: productId }, {$set:elements});
+    const result = await ProductModel.findByIdAndUpdate({ _id: productId }, {$set:elements});
     return result;
   }
   

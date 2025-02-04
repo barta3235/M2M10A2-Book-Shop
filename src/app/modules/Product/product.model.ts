@@ -8,7 +8,7 @@ const productSchema = new Schema<TProduct,TProductModel,TProductMethod>(
     price: {
       type: Number,
       required: [true, 'Book price is required'],
-      min: [0, 'rice must be a non-negative value'],
+      min: [0, 'Price must be a non-negative value'],
     },
     category: {
       type: String,
