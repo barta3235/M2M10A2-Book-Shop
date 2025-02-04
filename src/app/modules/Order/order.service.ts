@@ -73,8 +73,15 @@ const revenueCollectionFromDB= async()=>{
 }
 
 
+//get orders by email from db
+const getOrdersFromDBByEmail= async(givenEmail:string)=>{
+    const result= await OrderModel.find({email:givenEmail})
+    return result
+}
+
 export const OrderServices={
     createOrderIntoDB,
     revenueCollectionFromDB,
-    getAllOrdersFromDB
+    getAllOrdersFromDB,
+    getOrdersFromDBByEmail
 }
