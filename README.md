@@ -12,6 +12,8 @@ The application features comprehensive error handling, ensuring proper validatio
 - Get All Order: List all orders form the database.
 - Calculate Total Revenue: Get the total revenue generated from orders using MongoDB aggregation.
 
+# Live Link: https://m2-m10-a2-book-shop.vercel.app/{api endpoints}
+
 # Product management API endpoints:
 
 1. Create a Book → (POST) /api/products – Adds a new book to the inventory.
