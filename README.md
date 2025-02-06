@@ -1,8 +1,8 @@
-## Overview
+## Overview:
 The Book Shop is a robust Express.js application built with TypeScript and MongoDB (Mongoose) to efficiently manage books and orders. It supports full CRUD operations, ensuring seamless book management while maintaining data integrity through Mongoose schema validation.
 The application features comprehensive error handling, ensuring proper validation, structured error responses, and 404 handling for missing or un matched resources.
 
-# Features
+# Features:
 - Create a Book: Add new books to the store.
 - Retrieve All Books: List all books in the database and search through query parameters for title, author and category
 - Get Specific Book: Retrieve a book’s details using its ID.
@@ -12,7 +12,8 @@ The application features comprehensive error handling, ensuring proper validatio
 - Get All Order: List all orders form the database.
 - Calculate Total Revenue: Get the total revenue generated from orders using MongoDB aggregation.
 
-# Live Link: https://m2-m10-a2-book-shop.vercel.app/{api endpoints}
+# Live Link:
+- https://m2-m10-a2-book-shop.vercel.app/{api endpoints}
 
 # Product management API endpoints:
 
@@ -48,7 +49,7 @@ The application features comprehensive error handling, ensuring proper validatio
   "totalPrice": 30
 }
 
-# Installation
+# Installations
 1. Node.js (Backend runtime)
 2. Express.js (Web framework)
 3. TypeScript (For type safety)
