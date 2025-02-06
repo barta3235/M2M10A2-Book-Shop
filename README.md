@@ -55,4 +55,5 @@ The application features comprehensive error handling, ensuring proper validatio
 6. ts-node-dev (Fast TypeScript execution in development) | https://www.npmjs.com/package/ts-node-dev
 7. ESLint (Code linting) | https://shorturl.at/hHNnC
 8. Prettier (Code formatting) | https://shorturl.at/hHNnC
+9. Validator (Data validation library for input validation) | https://github.com/validatorjs/validator.js
 
