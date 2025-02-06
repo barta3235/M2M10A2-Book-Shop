@@ -13,7 +13,7 @@ The application features comprehensive error handling, ensuring proper validatio
 - Calculate Total Revenue: Get the total revenue generated from orders using MongoDB aggregation.
 
 # Live Link:
-- https://m2-m10-a2-book-shop.vercel.app/{api endpoints}
+- https://m2-m10-a2-book-shop.vercel.app/
 
 # Product management API endpoints:
 
