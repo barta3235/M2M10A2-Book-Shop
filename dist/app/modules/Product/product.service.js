@@ -46,7 +46,7 @@ const updateProductByIdInDB = (productId, elements) => __awaiter(void 0, void 0,
         throw new Error('Invalid fields provided for update');
     }
     else {
-        const result = yield product_model_1.ProductModel.findByIdAndUpdate({ _id: productId }, { $set: elements });
+        const result = yield product_model_1.ProductModel.findByIdAndUpdate({ _id: productId }, { $set: elements }, { new: true });
         return result;
     }
 });
